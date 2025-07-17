@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Afanyu | Junior Software Engineer Portfolio</title>
+  <meta name="description" content="Portfolio of Afanyu Precious Nganji, aspiring software engineer and National Diploma graduate.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="icon" type="image/x-icon" href="C:\Users\user\Desktop\image1.png">
+    <link rel="apple-touch-icon" href="C:\Users\user\Desktop\image1.png">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --background: #f8fafc;
+      --background-dark: #18181b;
+      --text: #495770;
+      --text-light: #f1f5f9;
+      --accent: #38bdf8;
+      --gray: #64748b;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --transition: 0.2s cubic-bezier(.4,0,.2,1);
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--background);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      transition: background 0.3s, color 0.3s;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(37, 99, 235, 0.12) 0%, transparent 50%);
+      animation: backgroundFloat 8s ease-in-out infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+    @keyframes backgroundFloat {
+      0%, 100% { 
+        transform: translate(0, 0) scale(1);
+        opacity: 0.8;
+      }
+      25% { 
+        transform: translate(-20px, -25px) scale(1.2);
+        opacity: 1;
+      }
+      50% { 
+        transform: translate(25px, -20px) scale(0.8);
+        opacity: 0.9;
+      }
+      75% { 
+        transform: translate(-15px, 20px) scale(1.15);
+        opacity: 1;
+      }
+    }
+    body.dark {
+      background: var(--background-dark);
+      color: var(--text-light);
+    }
+    body.dark::before {
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(56, 189, 248, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(37, 99, 235, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(56, 189, 248, 0.15) 0%, transparent 50%);
+    }
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    a:hover, a:focus {
+      color: var(--accent);
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    /* Navbar */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    body.dark nav {
+      background: rgba(24,24,27,0.95);
+      border-bottom: 1px solid #27272a;
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      color: var(--primary);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      font-weight: 500;
+      color: inherit;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      transition: background var(--transition), color var(--transition);
+    }
+    .nav-links a.active, .nav-links a:hover, .nav-links a:focus {
+      background: var(--primary);
+      color: #fff;
+    }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.7rem;
+      color: var(--primary);
+      cursor: pointer;
+    }
+    .dark-toggle {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-left: 1rem;
+      cursor: pointer;
+      transition: color var(--transition);
+    }
+    body.dark .dark-toggle {
+      color: var(--accent);
+    }
+    /* Hero */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 2rem;
+    }
+    .hero-bg {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: 
+        radial-gradient(circle at 60% 40%, var(--primary) 0%, transparent 70%),
+        radial-gradient(circle at 20% 80%, var(--accent) 0%, transparent 70%);
+      opacity: 0.25;
+      animation: bgmove 10s ease-in-out infinite alternate;
+    }
+    @keyframes bgmove {
+      0% { 
+        background-position: 60% 40%, 20% 80%;
+        transform: scale(1);
+      }
+      50% {
+        background-position: 65% 45%, 25% 85%;
+        transform: scale(1.3);
+      }
+      100% { 
+        background-position: 70% 50%, 30% 90%;
+        transform: scale(0.9);
+      }
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      margin-top: 2rem;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--primary-dark);
+      animation: fadeInUp 1s ease-out;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    body.dark .hero h1 {
+      color: var(--accent);
+    }
+    .hero .tagline {
+      font-size: 1.2rem;
+      color: var(--gray);
+      margin-bottom: 2rem;
+      font-weight: 500;
+      animation: fadeInUp 1s ease-out 0.2s both;
+    }
+    .hero .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 1s ease-out 0.4s both;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: var(--radius);
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      cursor: pointer;
+      transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+      box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+      text-decoration: none;
+    }
+    .btn.secondary {
+      background: #fff;
+      color: var(--primary);
+      border: 1.5px solid var(--primary);
+    }
+    .btn.secondary:hover, .btn.secondary:focus {
+      background: var(--primary);
+      color: #fff;
+    }
+    .btn:hover, .btn:focus {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(37,99,235,0.15);
+    }
+    /* About */
+    section {
+      padding: 4rem 0 2.5rem 0;
+    }
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2.5rem;
+      justify-content: center;
+    }
+    .about-img {
+      flex: 0 0 180px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 60%, var(--accent) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(37,99,235,0.10);
+    }
+    .about-img img {
+      width: 90%;
+      height: 90%;
+      object-fit: cover;
+      border-radius: 50%;
+      filter: grayscale(0.1);
+    }
+    .about-content {
+      flex: 1 1 320px;
+      min-width: 260px;
+    }
+    .about-content h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-dark);
+    }
+    body.dark .about-content h2 {
+      color: var(--accent);
+    }
+    .about-content p {
+      font-size: 1.1rem;
+      color: var(--gray);
+      margin-bottom: 1.2rem;
+    }
+    .about-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      color: var(--text);
+      font-size: 1rem;
+    }
+    .about-list li {
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .about-list i {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    /* Skills */
+    .skills {
+      background: #f1f5f9;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(37,99,235,0.04);
+      padding: 2.5rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+    body.dark .skills {
+      background: #23272f;
+      box-shadow: 0 2px 8px rgba(56,189,248,0.04);
+    }
+    .skills h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--primary-dark);
+    }
+    body.dark .skills h2 {
+      color: var(--accent);
+    }
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      justify-content: center;
+    }
+    .skill-group {
+      min-width: 160px;
+      flex: 1 1 180px;
+    }
+    .skill-group h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.7rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .skill-icons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      align-items: center;
+    }
+    .skill-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 2rem;
+      color: var(--primary-dark);
+      background: #fff;
+      border-radius: 8px;
+      padding: 0.5rem 0.7rem;
+      box-shadow: 0 1px 4px rgba(37,99,235,0.07);
+      transition: background var(--transition), color var(--transition);
+    }
+    .skill-icon span {
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin-top: 0.2rem;
+    }
+    body.dark .skill-icon {
+      background: #18181b;
+      color: var(--accent);
+    }
+    /* Projects */
+    .projects h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--primary-dark);
+    }
+    body.dark .projects h2 {
+      color: var(--accent);
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .project-card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px rgba(37,99,235,0.07);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.15s, box-shadow 0.15s;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+    .project-card:hover, .project-card:focus {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 6px 24px rgba(37,99,235,0.13);
+      border-color: var(--primary);
+    }
+    body.dark .project-card {
+      background: #23272f;
+      border: 1px solid #27272a;
+    }
+    .project-img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      background: #e0e7ef;
+      border-bottom: 1px solid var(--border);
+    }
+    .project-content {
+      padding: 1.2rem 1rem 1rem 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .project-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--primary-dark);
+    }
+    body.dark .project-title {
+      color: var(--accent);
+    }
+    .project-desc {
+      font-size: 0.98rem;
+      color: var(--gray);
+      margin-bottom: 0.7rem;
+    }
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.7rem;
+    }
+    .project-tech span {
+      background: #e0e7ef;
+      color: var(--primary-dark);
+      font-size: 0.85rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+    body.dark .project-tech span {
+      background: #18181b;
+      color: var(--accent);
+    }
+    .project-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .project-links a {
+      color: var(--primary);
+      font-size: 1.2rem;
+      transition: color var(--transition);
+    }
+    .project-links a:hover, .project-links a:focus {
+      color: var(--accent);
+    }
+    /* Project Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0; top: 0; right: 0; bottom: 0;
+      background: rgba(30,41,59,0.75);
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      background: #fff;
+      color: var(--text);
+      border-radius: var(--radius);
+      max-width: 500px;
+      width: 100%;
+      padding: 2rem 1.5rem;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(37,99,235,0.18);
+      animation: modalIn 0.2s;
+    }
+    @keyframes modalIn {
+      from { transform: scale(0.95) translateY(30px); opacity: 0; }
+      to { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      color: var(--primary);
+      cursor: pointer;
+    }
+    body.dark .modal-content {
+      background: #23272f;
+      color: var(--text-light);
+    }
+    /* Resume */
+    .resume-section {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .resume-preview {
+      display: inline-block;
+      width: 100%;
+      max-width: 420px;
+      height: 540px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(37,99,235,0.07);
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+    body.dark .resume-preview {
+      background: #23272f;
+      border: 1.5px solid #27272a;
+    }
+    .resume-section .btn {
+      margin-top: 0.5rem;
+    }
+    /* Contact */
+    .contact-section {
+      background: #f1f5f9;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(37,99,235,0.04);
+      padding: 2.5rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+    body.dark .contact-section {
+      background: #23272f;
+      box-shadow: 0 2px 8px rgba(56,189,248,0.04);
+    }
+    .contact-section h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--primary-dark);
+    }
+    body.dark .contact-section h2 {
+      color: var(--accent);
+    }
+    .contact-form {
+      max-width: 420px;
+      margin: 0 auto 1.5rem auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+    .contact-form label {
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+      color: var(--primary-dark);
+      display: block;
+    }
+    body.dark .contact-form label {
+      color: var(--accent);
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: 7px;
+      border: 1.5px solid var(--border);
+      font-size: 1rem;
+      background: #fff;
+      color: var(--text);
+      transition: border var(--transition), background var(--transition);
+      font-family: inherit;
+      resize: none;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+    body.dark .contact-form input, body.dark .contact-form textarea {
+      background: #18181b;
+      color: var(--text-light);
+      border: 1.5px solid #27272a;
+    }
+    .contact-form button {
+      margin-top: 0.5rem;
+    }
+    .contact-socials {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .contact-socials a {
+      color: var(--primary);
+      font-size: 1.7rem;
+      transition: color var(--transition);
+    }
+    .contact-socials a:hover, .contact-socials a:focus {
+      color: var(--accent);
+    }
+    /* Testimonials */
+    .testimonials {
+      margin: 3rem 0 2rem 0;
+      text-align: center;
+    }
+    .testimonials h2 {
+      color: var(--primary-dark);
+      margin-bottom: 2rem;
+    }
+    body.dark .testimonials h2 {
+      color: var(--accent);
+    }
+    .testimonial-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .testimonial-card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(37,99,235,0.07);
+      padding: 1.5rem 1.2rem;
+      max-width: 320px;
+      min-width: 220px;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+    body.dark .testimonial-card {
+      background: #23272f;
+      border: 1px solid #27272a;
+    }
+    .testimonial-card .testimonial-quote {
+      font-style: italic;
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+    .testimonial-card .testimonial-author {
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+    body.dark .testimonial-card .testimonial-author {
+      color: var(--accent);
+    }
+    /* Blog */
+    .blog-section {
+      margin: 3rem 0 2rem 0;
+      text-align: center;
+    }
+    .blog-section h2 {
+      color: var(--primary-dark);
+      margin-bottom: 2rem;
+    }
+    body.dark .blog-section h2 {
+      color: var(--accent);
+    }
+    .blog-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .blog-card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(37,99,235,0.07);
+      padding: 1.5rem 1.2rem;
+      max-width: 320px;
+      min-width: 220px;
+      text-align: left;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+    body.dark .blog-card {
+      background: #23272f;
+      border: 1px solid #27272a;
+    }
+    .blog-title {
+      font-weight: 600;
+      color: var(--primary-dark);
+      font-size: 1.1rem;
+    }
+    body.dark .blog-title {
+      color: var(--accent);
+    }
+    .blog-date {
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+    .blog-excerpt {
+      font-size: 0.98rem;
+      color: var(--gray);
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1.5rem 0 1rem 0;
+      color: var(--gray);
+      font-size: 0.98rem;
+      background: none;
+    }
+    /* Responsive */
+    @media (max-width: 900px) {
+      .about {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .skills-grid {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+    }
+    @media (max-width: 700px) {
+      .navbar {
+        padding: 0 0.7rem;
+      }
+      .container {
+        padding: 0 0.7rem;
+      }
+      section {
+        padding: 2.5rem 0 1.5rem 0;
+      }
+      .skills, .contact-section {
+        padding: 1.5rem 0.7rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+      .about-img {
+        width: 120px;
+        height: 120px;
+      }
+      .resume-preview {
+        height: 320px;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .testimonial-list, .blog-list {
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .nav-links {
+        gap: 1rem;
+      }
+      .btn, .btn.secondary {
+        font-size: 0.95rem;
+        padding: 0.6rem 1.1rem;
+      }
+    }
+    /* Mobile Nav */
+    @media (max-width: 700px) {
+      .nav-links {
+        position: absolute;
+        top: 64px;
+        right: 0;
+        background: #fff;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 180px;
+        padding: 1.2rem 1rem;
+        box-shadow: 0 2px 12px rgba(37,99,235,0.07);
+        border-radius: 0 0 0 12px;
+        display: none;
+      }
+      body.dark .nav-links {
+        background: #23272f;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .nav-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="navbar">
+      <div class="nav-logo">Afanyu Precious Nganji</div>
+      <button class="nav-toggle" aria-label="Open navigation" id="navToggle"><i class="fas fa-bars"></i></button>
+      <div class="nav-links" id="navLinks">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+        <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <h1>Hello, I'm Afanyu Precious Nganji</h1>
+        <div class="tagline">Aspiring Software Engineer | Problem Solver | Tech Enthusiast | Graphic Designer | Content Creator </div>
+        <div class="cta-buttons">
+          <a href="#projects" class="btn">View Projects</a>
+          <a href="C:\Users\user\Documents\Precious Cv 25.pdf" class="btn secondary" download>Download Resume</a>
+        </div>
+      </div>
+    </section>
+    <!-- About Me -->
+    <section id="about">
+      <div class="container about">
+        <div class="about-img">
+          <img src="C:\Users\user\Desktop\⁮\WhatsApp Images\IMG-20240619-WA0047.jpg" alt="Afanyu Precious professional portrait" />
+        </div>
+        <div class="about-content">
+          <h2>About Me</h2>
+          <p>
+            I'm a junior software developer, graphic designer, YouTuber, and logo creator, with a National Diploma and a passion for building impactful digital solutions. 
+            My interests include software development, web technologies, databases, graphic design, content creation, and solving real-world problems through code and creativity. 
+            I am eager to contribute to innovative teams and grow as a professional in both the tech and creative industries.
+          </p>
+          <ul class="about-list">
+            <li><i class="fas fa-graduation-cap"></i> National Diploma in Software Development</li>
+            <li><i class="fas fa-code"></i> Web Technologies & Databases</li>
+            <li><i class="fas fa-paint-brush"></i> Graphic Design & Logo Creation</li>
+            <li><i class="fas fa-video"></i> YouTube Content Creation</li>
+            <li><i class="fas fa-lightbulb"></i> Problem Solving & Continuous Learning</li>
+          </ul>
+</div>
+      </div>
+    </section>
+    <!-- Skills / Tech Stack -->
+    <section id="skills">
+      <div class="container skills">
+        <h2>Skills & Tech Stack</h2>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h3>Languages</h3>
+            <div class="skill-icons">
+              <div class="skill-icon" title="HTML5"><i class="fab fa-html5" style="color:#e34c26"></i><span>HTML5</span></div>
+              <div class="skill-icon" title="CSS3"><i class="fab fa-css3-alt" style="color:#1572b6"></i><span>CSS3</span></div>
+              <div class="skill-icon" title="JavaScript"><i class="fab fa-js-square" style="color:#f7df1e"></i><span>JavaScript</span></div>
+              <div class="skill-icon" title="PHP"><i class="fab fa-php" style="color:#777bb4"></i><span>PHP</span></div>
+            </div>
+          </div><!--
+          <div class="skill-group">
+            <h3>Frameworks</h3>
+            <div class="skill-icons">
+              <div class="skill-icon" title="Laravel"><i class="fab fa-laravel" style="color:#ff2d20"></i><span>Laravel</span></div>
+              <div class="skill-icon" title="React"><i class="fab fa-react" style="color:#61dafb"></i><span>React</span></div>
+            </div>
+          </div> -->
+          <div class="skill-group">
+            <h3>Databases</h3>
+            <div class="skill-icons">
+              <div class="skill-icon" title="MySQL"><i class="fas fa-database" style="color:#00618a"></i><span>MySQL</span></div>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h3>Tools</h3>
+            <div class="skill-icons">
+             <!-- <div class="skill-icon" title="Git"><i class="fab fa-git-alt" style="color:#f05032"></i><span>Git</span></div> -->
+              <div class="skill-icon" title="GitHub"><i class="fab fa-github" style="color:#181717"></i><span>GitHub</span></div>
+              <div class="skill-icon" title="VS Code"><i class="fas fa-code" style="color:#007acc"></i><span>VS Code</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container projects">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <div class="project-card" tabindex="0" data-project="0">
+            <img class="project-img" src="C:\Users\user\Downloads\coming.png" alt="Screenshot of Student Portal project" />
+            <div class="project-content">
+              <div>
+                <div class="project-title">Lost and Found Campus Portal (LAF-CAMP)</div>
+                <div class="project-desc">A "Lost and Found Campus Portal" is a web application, 
+                  for students and staffs especially universities in Cameroon where 
+                  students often lose or misplace items without a central system to help them recover them.</div>
+                <div class="project-tech">
+                  <span>HTML</span><span>PHP</span><span>MySQL</span><span>Bootstrap</span><span>JavaScript</span>
+                </div>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/AfanyuPrecious" aria-label="GitHub Repository"><i class="fab fa-github"></i></a>
+                <a href="#" aria-label="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+          </div>
+          <!-- innovative pro-->
+          <div class="project-card" tabindex="0" data-project="1">
+  <img class="project-img" src="C:\Users\user\Pictures\Screenshots\Screenshot 2025-07-15 155255.png" alt="Screenshot of Innovative Tech Solutions website" />
+  <div class="project-content">
+    <div>
+      <div class="project-title">SwissLink Professional Institute Website by Innovative Tech Solutions</div>
+      <div class="project-desc">A professional website for SwissLink Higher Institute by Innovative Tech Solutions, an institute offering cutting-edge education or courses in Technology, Business, & Education. Innovative Tech Solution offers IT services, including web development, mobile app development, and digital solutions tailored to client needs.</div>
+      <div class="project-tech">
+        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Netlify</span>
+      </div>
+    </div>
+    <div class="project-links">
+      <a href="https://github.com/AfanyuPrecious" aria-label="GitHub Repository"><i class="fab fa-github"></i></a>
+      <a href="https://innovativetechsolutions.netlify.app" aria-label="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+    </div>
+  </div>
+</div>
+          <!-- Project 2 -->
+          <div class="project-card" tabindex="0" data-project="2">
+            <img class="project-img" src="C:\Users\user\Downloads\coming.png" alt="Screenshot of Task Manager project" />
+            <div class="project-content">
+              <div>
+                <div class="project-title">Parent-Teacher Communication Portal (EduConnect)</div>
+                <div class="project-desc">Parent-Teacher Communication Portal is a web app that connects parents who often feel disconnected from their child’s academic progress. This system improve accountability, student performance, and school-parent relationships.
+                  </div>
+                <div class="project-tech">
+                  <span>React</span><span>Laravel</span><span>REST API</span>
+                </div>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/AfanyuPrecious" aria-label="GitHub Repository"><i class="fab fa-github"></i></a>
+                <a href="#" aria-label="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+          </div>
+          <!-- Project 3 -->
+          <div class="project-card" tabindex="0" data-project="3">
+            <img class="project-img" src="C:\Users\user\Downloads\coming.png" alt="Screenshot of Portfolio Website project" />
+            <div class="project-content">
+              <div>
+                <div class="project-title">Portfolio Website</div>
+                <div class="project-desc">My personal portfolio website to showcase my projects, skills, and resume. Built with HTML, CSS, and JavaScript.</div>
+                <div class="project-tech">
+                  <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                </div>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/AfanyuPrecious" aria-label="GitHub Repository"><i class="fab fa-github"></i></a>
+                <a href="#" aria-label="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+          </div>
+          <!-- Project 4 -->
+          <div class="project-card" tabindex="0" data-project="4">
+            <img class="project-img" src="C:\Users\user\Downloads\coming.png" alt="Screenshot of Blog Platform project" />
+            <div class="project-content">
+              <div>
+                <div class="project-title">Campus Roommate Finder Platform (RoomMatchU)</div>
+                <div class="project-desc">A Campus Roommate Finder is another timely and practical project that tackles real challenges students face — especially during the start of new academic sessions when students struggle to find affordable, compatible roommates or places to stay.</div>
+                <div class="project-tech">
+                  <span>Laravel</span><span>MySQL</span>
+                </div>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/AfanyuPrecious" aria-label="GitHub Repository"><i class="fab fa-github"></i></a>
+                <a href="#" aria-label="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+          </div>
+          <!-- Project 5: Graphic Design Showcase -->
+          <div class="project-card" tabindex="0" data-project="5">
+            <img class="project-img" src="C:\Users\user\Desktop\Inkscape\Assigment\set logo1.png" alt="Graphic Design Showcase" />
+            <div class="project-content">
+              <div>
+                <div class="project-title">Graphic Design Showcase</div>
+                <div class="project-desc">
+                  A collection of my graphic design works, including logos, flyers, banners, and social media posts. This project highlights my creativity and proficiency with design tools such as Adobe Photoshop, Inkscape, and Canva.
+                </div>
+                <div class="project-tech">
+                  <span>Photoshop</span><span>Inkscape</span><span>Canva</span><span>Branding</span>
+                </div>
+              </div>
+              <div class="project-links">
+                <!-- Replace the # below with a link to your design portfolio or a folder/gallery if available -->
+                <a href="#" aria-label="View Graphic Designs" target="_blank"><i class="fas fa-images"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Project Modal -->
+        <div class="modal" id="projectModal" aria-modal="true" role="dialog" tabindex="-1">
+          <div class="modal-content" id="modalContent">
+            <button class="modal-close" id="modalClose" aria-label="Close project details"><i class="fas fa-times"></i></button>
+            <div id="modalBody"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Resume -->
+    <section id="skills">
+      <div class="container resume-section">
+        <h2 class="section-title">My CV</h2>
+        <div class="resume-content" style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem; justify-content: center;">
+          <div class="resume-preview" style="flex: 1 1 350px; max-width: 450px; background: #fff; border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,0.08); padding: 2rem 1.5rem; text-align: center;">
+            <div class="resume-icon" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;">
+              <i class="fas fa-file-pdf"></i>
+            </div>
+            <h3 style="margin-bottom: 0.5rem;">Afanyu Precious Nganji - Software Engineer</h3>
+            <p style="margin-bottom: 0.3rem;">National Diploma Graduate | Full Stack Developer</p>
+            <p style="font-size: 0.98rem; color: #666;">View my complete professional background, education, and experience</p>
+          </div>
+          <div class="resume-iframe" style="flex: 2 1 500px; min-width: 320px; max-width: 700px; min-height: 420px; box-shadow: 0 2px 16px rgba(0,0,0,0.08); border-radius: 12px; overflow: hidden;">
+            <iframe src="C:\Users\user\Documents\Precious Cv 25.pdf" title="Resume PDF preview" width="100%" height="420px" style="border:0;" aria-label="Resume PDF"></iframe>
+          </div>
+        </div>
+        <div class="cta-buttons" style="margin-top: 2rem; display: flex; gap: 1.2rem; justify-content: center;">
+          <a href="C:\Users\user\Documents\Precious Cv 25.pdf" class="btn btn-primary" download style="display: inline-flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-download"></i> Download PDF
+          </a>
+          <a href="C:\Users\user\Documents\Precious Cv 25.pdf" class="btn btn-secondary" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-eye"></i> View Online
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container contact-section">
+        <h2>Contact</h2>
+        <form class="contact-form" id="contactForm" autocomplete="off" novalidate>
+          <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required aria-required="true" placeholder="Your Name" />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required aria-required="true" placeholder="you@email.com" />
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" required aria-required="true" placeholder="Type your message..."></textarea>
+          </div>
+          <button type="button" class="btn" id="sendMsgBtn">Send Message</button>
+          <div id="formMsg" style="margin-top:0.7rem;font-size:0.98rem;"></div>
+          <script>
+            // WhatsApp and Email sending logic
+            document.getElementById('sendMsgBtn').addEventListener('click', function(e) {
+              e.preventDefault();
+              const name = document.getElementById('name').value.trim();
+              const email = document.getElementById('email').value.trim();
+              const message = document.getElementById('message').value.trim();
+              const formMsg = document.getElementById('formMsg');
+              if (!name || !email || !message) {
+                formMsg.textContent = "Please fill in all fields.";
+                formMsg.style.color = "var(--primary)";
+                return;
+              }
+
+              // Compose WhatsApp message
+              const phone = "237673077071";
+              const text = encodeURIComponent(
+                `New Portfolio Contact:\nName: ${name}\nEmail: ${email}\nMessage: ${message}`
+              );
+              // WhatsApp link
+              const whatsappUrl = `https://wa.me/${phone}?text=${text}`;
+
+              // Compose mailto link
+              const mailto = `mailto:preciousafanyu8@gmail.com?subject=Portfolio Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(
+                `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
+              )}`;
+
+              // Show options to user
+              formMsg.innerHTML = `
+                <span style="color:var(--primary);">Choose how to send your message:</span><br>
+                <a href="${whatsappUrl}" target="_blank" style="color:green;font-weight:600;margin-right:1.2em;">Send via WhatsApp</a>
+                <a href="${mailto}" style="color:var(--primary);font-weight:600;">Send via Email</a>
+              `;
+            });
+          </script>
+        </form>
+        <div class="contact-details" style="margin-top:1.5em; margin-bottom:1em; font-size:1.08em; display:flex; flex-direction:column; gap:0.5em;">
+          <div style="display:flex; align-items:center; gap:0.6em;">
+            <i class="fas fa-envelope" style="color:var(--primary); min-width:1.2em;"></i>
+            <strong>Email:</strong>
+            <a href="mailto:preciousafanyu8@gmail.com" style="color:inherit;">preciousafanyu8@gmail.com</a>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.6em;">
+            <i class="fas fa-phone-alt" style="color:var(--primary); min-width:1.2em;"></i>
+            <strong>Phone:</strong>
+            <a href="tel:+237673077071" style="color:inherit;">+237 673 077 071</a>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.6em;">
+            <i class="fas fa-map-marker-alt" style="color:var(--primary); min-width:1.2em;"></i>
+            <strong>Location:</strong>
+            <span>Bamenda, Cameroon</span>
+          </div>
+        </div>
+        <div class="contact-socials" aria-label="Social Links">
+          <a href="https://www.linkedin.com/in/afanyu-precious-866799299/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/AfanyuPrecious" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="mailto:preciousafanyu8@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://x.com/AfanyuPrecious" aria-label="Twitter"><i class="fas fa-x"></i></a>
+        </div>
+      </div>
+    </section>
+    <!-- Testimonials (Optional) -->
+    <section class="testimonials" id="testimonials">
+      <h2>Testimonials</h2>
+      <div class="testimonial-list">
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"Afanyu is a quick learner and a dedicated team player. He consistently delivers quality work and is always eager to take on new challenges."</div>
+          <div class="testimonial-author">- Lukong Alexander, Mentor</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"A passionate developer with a keen eye for detail. Afanyu’s problem-solving skills are impressive for a junior engineer."</div>
+          <div class="testimonial-author">- Nsho Roh Penuel, Project Lead</div>
+        </div>
+      </div>
+    </section>
+    <!-- Blog (Optional) -->
+    <section class="blog-section" id="blog">
+      <h2>Blog</h2>
+      <div class="blog-list">
+        <div class="blog-card">
+          <div class="blog-title">How I Built My First Web App</div>
+          <div class="blog-date">coming soon</div>
+          <div class="blog-excerpt">A step-by-step journey through building my first student portal using PHP and MySQL.</div>
+        </div>
+        <div class="blog-card">
+          <div class="blog-title">Learning Html as a Beginner</div>
+          <div class="blog-date">coming soon</div>
+          <div class="blog-excerpt">My experience and tips for getting started with React and component-based development.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    &copy; 2024 Afanyu Precious Nganji. All rights reserved.
+  </footer>
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+    // Close nav on link click (mobile)
+    Array.from(navLinks.querySelectorAll('a')).forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+      });
+    });
+    // Smooth scroll and active link
+    const navAnchors = navLinks.querySelectorAll('a[href^="#"]');
+    function setActiveNav(hash) {
+      navAnchors.forEach(a => {
+        if (a.getAttribute('href') === hash) a.classList.add('active');
+        else a.classList.remove('active');
+      });
+    }
+    navAnchors.forEach(a => {
+      a.addEventListener('click', function(e) {
+        setActiveNav(this.getAttribute('href'));
+      });
+    });
+    window.addEventListener('scroll', () => {
+      let fromTop = window.scrollY + 80;
+      navAnchors.forEach(link => {
+        let section = document.querySelector(link.hash);
+        if (section && section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+          setActiveNav(link.hash);
+        }
+      });
+    });
+    // Light/Dark mode toggle
+    const darkToggle = document.getElementById('darkToggle');
+    function setDarkMode(on) {
+      if (on) {
+        document.body.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        darkToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      } else {
+        document.body.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        darkToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      }
+    }
+    darkToggle.addEventListener('click', () => {
+      setDarkMode(!document.body.classList.contains('dark'));
+    });
+    // On load, set theme
+    (function() {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'dark' || (theme === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        setDarkMode(true);
+      } else {
+        setDarkMode(false);
+      }
+    })();
+    // Project Modal
+    const projects = [
+      {
+        title: "Lost and Found Campus Portal (LAF-CAMP)",
+        img: "C:/Users/user/Downloads/coming.png",
+        desc: "A Lost and Found Campus Portal is a user-friendly software platform designed to help university students report, track, and reclaim misplaced or lost items on campus. It provides a centralized system where users can submit lost or found item details, view matches, and communicate securely—streamlining recovery efforts while enhancing campus safety and community trust. 🎒📱",
+        tech: ["HTML", "PHP", "MySQL", "Bootstrap", "JavaScript"],
+        github: "https://github.com/AfanyuPrecious",
+        demo: "#"
+      },
+      {
+        title: "SwissLink Professional Institute Website by Innovative Tech Solutions",
+        img: "C:/Users/user/Pictures/Screenshots/Screenshot 2025-07-15 155345.png",
+        desc: "A professional website for SwissLink Higher Institute by Innovative Tech Solutions, an institute offering cutting-edge education or courses in Technology, Business, & Education. Innovative Tech Solution offers IT services, including web development, mobile app development, and digital solutions tailored to client needs.",
+        tech: ["HTML", "PHP", "MySQL", "Bootstrap", "JavaScript"],
+        github: "https://github.com/AfanyuPrecious",
+        demo: "#"
+      },
+      {
+        title: "Parent-Teacher Communication Portal (EduConnect)",
+        img: "C:/Users/user/Downloads/coming.png",
+        desc: "A Parent-Teacher Communication Portal is a software platform designed to bridge the gap between educators and families by providing real-time access to student progress, feedback, and school updates. It strengthens accountability, boosts student performance, and fosters meaningful parent-school partnerships—making it a smart solution for today’s education challenges. 📚💬",
+        tech: ["HTML", "PHP", "MySQL", "Bootstrap", "JavaScript"],
+        github: "https://github.com/AfanyuPrecious",
+        demo: "#"
+      },
+      {
+        title: "Portfolio Website",
+        img: "C:/Users/user/Downloads/coming.png",
+        desc: "My personal portfolio website to showcase my projects, skills, and resume. Built with HTML, CSS, and JavaScript.",
+        tech: ["HTML", "CSS", "JavaScript"],
+        github: "https://github.com/AfanyuPrecious",
+        demo: "#"
+      },
+      {
+        title: "Blog Platform",
+        img: "C:/Users/user/Downloads/coming.png",
+        desc: "Campus Roommate Finder 🧑‍🤝‍🧑A practical web-based solution that helps students find affordable and compatible roommates at the start of academic sessions. Features profile matching, secure chat, and responsive design—all built with modern full-stack tools.",
+        tech: ["HTML", "PHP", "MySQL", "Bootstrap", "JavaScript"],
+        github: "https://github.com/AfanyuPrecious",
+        demo: "#"
+      },
+      {
+        title: "Graphic Design Showcase",
+        img: "C:/Users/user/Desktop/Inkscape/Music.png",
+        desc: " A collection of my graphic design works, including logos, flyers, banners, and social media posts. This project highlights my creativity and proficiency with design tools such as Adobe Photoshop, Inkscape, and Canva.",
+        tech: ["Adobe Photoshop", "Inkscape", "Canva"],
+        github: "https://github.com/AfanyuPrecious",
+        demo: "#"
+      }
+    ];
+    const projectCards = document.querySelectorAll('.project-card');
+    const projectModal = document.getElementById('projectModal');
+    const modalBody = document.getElementById('modalBody');
+    const modalClose = document.getElementById('modalClose');
+    projectCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const idx = parseInt(card.getAttribute('data-project'));
+        const p = projects[idx];
+        modalBody.innerHTML = `
+          <img src="${p.img}" alt="Screenshot of ${p.title}" style="width:100%;border-radius:8px;margin-bottom:1rem;" />
+          <div style="font-size:1.2rem;font-weight:600;margin-bottom:0.5rem;color:var(--primary-dark);">${p.title}</div>
+          <div style="font-size:1rem;color:var(--gray);margin-bottom:0.7rem;">${p.desc}</div>
+          <div style="margin-bottom:0.7rem;">
+            ${p.tech.map(t => `<span style="background:#e0e7ef;color:var(--primary-dark);font-size:0.9rem;padding:0.2rem 0.7rem;border-radius:6px;margin-right:0.3rem;">${t}</span>`).join('')}
+          </div>
+          <div style="display:flex;gap:1.2rem;">
+            <a href="${p.github}" target="_blank" rel="noopener" aria-label="GitHub Repository"><i class="fab fa-github" style="font-size:1.3rem;"></i></a>
+            <a href="${p.demo}" target="_blank" rel="noopener" aria-label="Live Demo"><i class="fas fa-external-link-alt" style="font-size:1.3rem;"></i></a>
+          </div>
+        `;
+        projectModal.classList.add('active');
+        modalClose.focus();
+      });
+      card.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          card.click();
+        }
+      });
+    });
+    modalClose.addEventListener('click', () => {
+      projectModal.classList.remove('active');
+    });
+    projectModal.addEventListener('click', (e) => {
+      if (e.target === projectModal) {
+        projectModal.classList.remove('active');
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        projectModal.classList.remove('active');
+      }
+    });
+    // Contact Form (demo only)
+    const contactForm = document.getElementById('contactForm');
+    const formMsg = document.getElementById('formMsg');
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Simple validation
+      const name = contactForm.name.value.trim();
+      const email = contactForm.email.value.trim();
+      const message = contactForm.message.value.trim();
+      if (!name || !email || !message) {
+        formMsg.textContent = "Please fill in all fields.";
+        formMsg.style.color = "var(--primary)";
+        return;
+      }
+      // Simulate sending
+      formMsg.textContent = "Sending...";
+      formMsg.style.color = "var(--gray)";
+      setTimeout(() => {
+        formMsg.textContent = "Thank you for reaching out! I'll get back to you soon.";
+        formMsg.style.color = "var(--primary)";
+        contactForm.reset();
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
